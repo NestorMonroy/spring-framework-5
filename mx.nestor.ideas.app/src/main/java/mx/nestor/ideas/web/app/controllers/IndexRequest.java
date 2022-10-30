@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mx.nestor.ideas.web.app.models.Usuario;
 
 @Controller
-@PropertySource(ignoreResourceNotFound = true, value = "classpath:application.properties")
+//@PropertySource(ignoreResourceNotFound = true, value = "classpath:application.properties")
 @RequestMapping("/app")
 public class IndexRequest {
 	
@@ -33,7 +33,7 @@ public class IndexRequest {
 
 	@GetMapping({ "/index", "/", "", "/home" })
 	public String index(Model model) {
-		model.addAttribute("titulo", "Hola Nestor");
+		model.addAttribute("titulo", textoIndex);
 		return "index";
 	}
 
@@ -46,7 +46,7 @@ public class IndexRequest {
 		usuario.setEmail("abc@correo.com");
 		
 		model.addAttribute("usuario", usuario);
-		model.addAttribute("titulo", "Con ".concat(usuario.getNombre()));
+		model.addAttribute("titulo", textoPerfil.concat(usuario.getNombre()));
 		
 		return "perfil";
 	}
@@ -55,7 +55,7 @@ public class IndexRequest {
 	
 	@RequestMapping("/listar")
 	public String listar(Model model) {
-		model.addAttribute("titulo", "Lista de usuarios");
+		model.addAttribute("titulo", textoListar);
 		
 		return "listar";
 	}
