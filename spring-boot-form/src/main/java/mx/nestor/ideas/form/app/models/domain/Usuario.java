@@ -1,44 +1,37 @@
 package mx.nestor.ideas.form.app.models.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import mx.nestor.ideas.form.app.validation.IdentificadorRegex;
+import mx.nestor.ideas.form.app.validation.Requerido;
 
 public class Usuario {
-	
+	//@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+	//@NotEmpty
+	@IdentificadorRegex
 	private String identificador;
-	
-	public String getIdentificador() {
-		return identificador;
-	}
 
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
-	}
-
-	@NotEmpty(message = "el nombre no puede ser vacio")
+	//@NotEmpty(message = "el nombre no puede ser vacio")
 	private String nombre;
-	@NotEmpty
+	
+	//@NotEmpty
+	@Requerido                               
 	private String apellido;
-	public String getNombre() {
-		return nombre;
-	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	@NotEmpty
+	@NotBlank
+	@Size(min = 3, max = 8)
 	private String username;
-	@NotEmpty
+	
+	//@NotEmpty
+	@Requerido
 	private String password;
+
 	@NotEmpty
+	@Email(message = "correo con formato incorrecto")
 	private String email;
 
 	public String getUsername() {
@@ -63,6 +56,30 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
 	}
 
 }
