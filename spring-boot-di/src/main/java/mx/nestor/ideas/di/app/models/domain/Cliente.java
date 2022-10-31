@@ -2,8 +2,10 @@ package mx.nestor.ideas.di.app.models.domain;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 @Component
+@RequestScope
 public class Cliente {
 	
 	@Value("${cliente.nombre}")
