@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -94,7 +95,7 @@ public class FormController {
 		usuario.setApellido("Doe");
 		usuario.setIdentificador("13.456.789-K");
 		usuario.setPais(new Pais(3, "CL", "Chile"));
-		usuario.setRoles(Arrays.asList(new Role(2, "Usuario", "ROLE_USER")));
+		usuario.setRoles(Arrays.asList(new Role(2, "Usuario", "ROLE_USER"),new Role(3, "Usuario", "ROLE_MODERATOR")));
 
 		return "form";
 	}
@@ -157,6 +158,33 @@ public class FormController {
 		return paises;
 	}
 
+	@PostMapping("/form")
+	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {
+
+		// validador.validate(usuario, result);
+
+		if (result.hasErrors()) {
+			model.addAttribute("titulo", "Resultado form");
+			return "form";
+		}
+		
+		return "redirect:/ver";
+	}
+	
+	@GetMapping("/ver")
+	public String ver(@SessionAttribute(name="usuario", required = false) Usuario usuario, Model model, SessionStatus status) {
+		
+		if(usuario == null) {
+			return "redirect:/form";
+		}
+		
+		model.addAttribute("titulo", "Resultado form");
+		
+		status.setComplete();
+		return "resultado";
+	}
+	
+/*
 	
 	@PostMapping("/form")
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status) {
@@ -176,6 +204,9 @@ public class FormController {
 		return "resultado";
 	}
 	
+*/	
+	
+
 	
 	/*
 	@PostMapping("/form")
