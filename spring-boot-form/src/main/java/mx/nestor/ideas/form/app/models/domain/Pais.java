@@ -7,7 +7,7 @@ public class Pais {
 	
 	//@NotNull
 	private Integer id;
-	@NotEmpty
+	//@NotEmpty
 	private String codigo;
 	private String nombre;
 
@@ -44,4 +44,10 @@ public class Pais {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return this.id.toString();
+	}
+	
+	
 }

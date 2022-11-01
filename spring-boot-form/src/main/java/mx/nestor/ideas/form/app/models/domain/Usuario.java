@@ -1,6 +1,7 @@
 package mx.nestor.ideas.form.app.models.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -51,13 +52,25 @@ public class Usuario {
 	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 	
-	@Valid
+	//@Valid
+	@NotNull
 	private Pais pais;
+	
+	@NotEmpty
+	private List<Role> roles;
 
+	private Boolean habilitar;
+	
 	@NotEmpty
 	@Email(message = "correo con formato incorrecto")
 	private String email;
 
+	@NotEmpty
+	private String genero;
+	
+	private String valorSecreto;
+	 
+	
 	public String getUsername() {
 		return username;
 	}
@@ -102,8 +115,24 @@ public class Usuario {
 		return identificador;
 	}
 
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
+	}
+
+	public Boolean getHabilitar() {
+		return habilitar;
+	}
+
+	public void setHabilitar(Boolean habilitar) {
+		this.habilitar = habilitar;
 	}
 
 	public Integer getCuenta() {
@@ -130,4 +159,21 @@ public class Usuario {
 		this.pais = pais;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getValorSecreto() {
+		return valorSecreto;
+	}
+
+	public void setValorSecreto(String valorSecreto) {
+		this.valorSecreto = valorSecreto;
+	}
+
+	
 }

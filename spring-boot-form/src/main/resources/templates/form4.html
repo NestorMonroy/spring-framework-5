@@ -17,22 +17,23 @@
 		
 		<div>
 			<label>Género</label>
-			<div th:each="gen: ${genero}">
-				<input type="radio" th:field="*{genero}" th:value="${gen}">
-				<label th:for="${#ids.prev('genero')}" th:text="${gen}"></label>
+			<div>
+				<input type="radio" id="genero1" th:field="*{genero}" th:value="Hombre">
+				<label th:for="genero1">Hombre</label>
 			</div>
+			<div>
+				<input type="radio" id="genero2" th:field="*{genero}" th:value="Mujer">
+				<label th:for="genero2">Mujer</label>
+			</div>			
 			<div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
 		</div>
-		
 		
 		<div>
 			<label for="pais">País</label>
 			<div>
 				<select id="pais" th:field="*{pais}">
 				<option value="">-- seleccionar --</option>
-				<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"
-				th:checked="${#lists.contains(usuario.roles, role)}"
-				></option>
+				<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
 				</select>
 			</div>
 			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
@@ -114,9 +115,7 @@
 			<div>
 				<input type="submit" value="Enviar">
 			</div>
-		</div>
-		<input type="hidden" th:field="*{valorSecreto}">
-		
+		</div>	
 	</form>
 </body>
 </html>
