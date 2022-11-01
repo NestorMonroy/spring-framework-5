@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import mx.nestor.ideas.form.app.editors.NombreMayusculaEditor;
 import mx.nestor.ideas.form.app.editors.PaisPropertyEditor;
 import mx.nestor.ideas.form.app.editors.RolesEditor;
+import mx.nestor.ideas.form.app.interceptor.TiempoTranscurridoInterceptor;
 import mx.nestor.ideas.form.app.models.domain.Pais;
 import mx.nestor.ideas.form.app.models.domain.Role;
 import mx.nestor.ideas.form.app.models.domain.Usuario;
@@ -40,6 +43,8 @@ import mx.nestor.ideas.form.app.validation.UsuarioValidador;
 @SessionAttributes("usuario")
 public class FormController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(TiempoTranscurridoInterceptor.class);
+
 	@Autowired
 	private UsuarioValidador validador;
 	
@@ -162,6 +167,7 @@ public class FormController {
 	public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {
 
 		// validador.validate(usuario, result);
+		logger.info("/form procesar : " + usuario.getApellido());
 
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Resultado form");
