@@ -6,18 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import mx.nestor.springboot.app.models.entity.Cliente;
 
 @Repository
-public class ClienteDaoImpl implements IClienteDao{
+public class _ClienteDaoImpl implements _IClienteDao{
 	@PersistenceContext
 	private EntityManager em;
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	
 	public List<Cliente> findAll() {
 		// TODO Auto-generated method stub
 		return em.createQuery("from Cliente").getResultList();
